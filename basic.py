@@ -54,7 +54,7 @@ class NWPUgrade:
 				if grade[3] != 'P':
 					mark += float(grade[3]) * float(grade[2])
 					credit += float(grade[2])
-			print u'你的学分绩', mark/credit
+			print u'您的学分绩', mark/credit
 		except:
 			print 'ERROR'
 
