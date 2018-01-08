@@ -83,23 +83,28 @@ if __name__ == '__main__':
 
     NWPU = NWPUgrade()
     NWPU.grade()
+    NWPU.printgrade()
     grades = NWPU.getgrades()
     SubjectNumber = len(grades)
     while True:
-        time.sleep(30*60)
+        time.sleep(30*60) #30分钟检测一次
         NWPU.grade()
-        grades = NWPU.getgrades()
-        NewNumber = len(grades)
+        Newgrades = NWPU.getgrades()
+        NewNumber = len(Newgrades)
         if NewNumber != SubjectNumber:
             SubjectNumber = NewNumber
             mark = 0
             credit = 0
-            for grade in grades:
+            Newgrade = []
+            for grade in Newgrades:
+                if grade not in grades:
+                    Newgrade = grade
                 if grade[3] != 'P':
                     mark += float(grade[3]) * float(grade[2])
                     credit += float(grade[2])
             GPA = mark / credit
-            grade = grades[-1]
+            grades = Newgrades
+            grade = Newgrade
             text = u"学期：%s \n课程名称：%s \n学分：%s \n成绩：%s \nGPA：%f" % (grade[0], grade[1], grade[2], grade[3], GPA)
 
             msg = MIMEText(text, 'plain', 'utf-8')
