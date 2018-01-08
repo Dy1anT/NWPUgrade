@@ -100,7 +100,7 @@ if __name__ == '__main__':
                     credit += float(grade[2])
             GPA = mark / credit
             grade = grades[-1]
-            text = u'''学期：%s \n课程名称：%s \n学分：%s \n成绩：%s \nGPA：%f''' % (grade[0], grade[1], grade[2], grade[3], GPA)
+            text = u"学期：%s \n课程名称：%s \n学分：%s \n成绩：%s \nGPA：%f" % (grade[0], grade[1], grade[2], grade[3], GPA)
 
             msg = MIMEText(text, 'plain', 'utf-8')
             msg['From'] = _format_addr(u'Python <%s>' % from_addr)
