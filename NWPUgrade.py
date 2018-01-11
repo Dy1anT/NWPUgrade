@@ -87,33 +87,36 @@ if __name__ == '__main__':
     grades = NWPU.getgrades()
     SubjectNumber = len(grades)
     while True:
-        time.sleep(30*60) #30分钟检测一次
-        NWPU.grade()
-        Newgrades = NWPU.getgrades()
-        NewNumber = len(Newgrades)
-        if NewNumber != SubjectNumber:
-            SubjectNumber = NewNumber
-            mark = 0
-            credit = 0
-            Newgrade = []
-            for grade in Newgrades:
-                if grade not in grades:
-                    Newgrade = grade
-                if grade[3] != 'P':
-                    mark += float(grade[3]) * float(grade[2])
-                    credit += float(grade[2])
-            GPA = mark / credit
-            grades = Newgrades
-            grade = Newgrade
-            text = u"学期：%s  \n课程名称：%s  \n学分：%s  \n成绩：%s  \nGPA：%f" % (grade[0], grade[1], grade[2], grade[3], GPA)
-
-            msg = MIMEText(text, 'plain', 'utf-8')
-            msg['From'] = _format_addr(u'Python <%s>' % from_addr)
-            msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
-            msg['Subject'] = Header(u'您的成绩单', 'utf-8').encode()
-
-            server = smtplib.SMTP(smtp_server, 25)
-            server.set_debuglevel(1)
-            server.login(from_addr, password)
-            server.sendmail(from_addr, [to_addr], msg.as_string())
-            server.quit()
+        try:
+            time.sleep(20*60) #20分钟检测一次
+            NWPU.grade()
+            Newgrades = NWPU.getgrades()
+            NewNumber = len(Newgrades)
+            if NewNumber != SubjectNumber: #有新成绩
+                SubjectNumber = NewNumber
+                mark = 0
+                credit = 0
+                Newgrade = []
+                for grade in Newgrades:
+                    if grade not in grades:
+                        Newgrade.append(grade) #可能同时更新复数个
+                    if grade[3] != 'P':
+                        mark += float(grade[3]) * float(grade[2])
+                        credit += float(grade[2])
+                GPA = mark / credit #计算学分绩
+                grades = Newgrades
+                text = ''
+                for grade in Newgrade:
+                    text = text + u"学期：%s  \n课程名称：%s  \n学分：%s  \n成绩：%s  \n" % (grade[0], grade[1], grade[2], grade[3])
+                text = text + u'学分绩：%f' % GPA
+                msg = MIMEText(text, 'plain', 'utf-8')
+                msg['From'] = _format_addr(u'Python <%s>' % from_addr)
+                msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
+                msg['Subject'] = Header(u'您的成绩单', 'utf-8').encode()
+                server = smtplib.SMTP(smtp_server, 25)
+                server.set_debuglevel(1)
+                server.login(from_addr, password)
+                server.sendmail(from_addr, [to_addr], msg.as_string())
+                server.quit()
+        except:
+            continue
