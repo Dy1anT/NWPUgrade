@@ -16,8 +16,8 @@ class NWPUgrade:
     def __init__(self):
         try:
             self.values = {}
-            self.values['username'] = "xxxxxxxxxx"	#username:学号
-            self.values['password'] = "xxxxxxxxxx"	#password:密码
+            self.values['username'] = "xxxxxxxxxx" #username:学号
+            self.values['password'] = "xxxxxxxxxx" #password:密码
             self.loginUrl = "http://us.nwpu.edu.cn/eams/login.action"
             self.gradeUrl = "http://us.nwpu.edu.cn/eams/teach/grade/course/person!historyCourseGrade.action?projectType=MAJOR"
             self.message = ''
@@ -51,10 +51,10 @@ class NWPUgrade:
             mark = 0
             credit = 0
             for grade in self.grades:
-                print grade[0]					#学期
-                print grade[1]					#课程名称
-                print u'学分：', grade[2]		#学分
-                print u'最终成绩：', grade[3]	#成绩
+                print grade[0] #学期
+                print grade[1] #课程名称
+                print u'学分：', grade[2] #学分
+                print u'最终成绩：', grade[3] #成绩
                 if grade[3] != 'P':
                     mark += float(grade[3]) * float(grade[2])
                     credit += float(grade[2])
