@@ -113,7 +113,7 @@ if __name__ == '__main__':
                 msg['From'] = _format_addr(u'Python <%s>' % from_addr)
                 msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
                 msg['Subject'] = Header(u'您的成绩单', 'utf-8').encode()
-                server = smtplib.SMTP(smtp_server, 25)
+                server = smtplib.SMTP_SSL(smtp_server, 465)
                 server.set_debuglevel(1)
                 server.login(from_addr, password)
                 server.sendmail(from_addr, [to_addr], msg.as_string())
