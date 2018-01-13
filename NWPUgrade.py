@@ -92,7 +92,7 @@ if __name__ == '__main__':
             NWPU.grade()
             Newgrades = NWPU.getgrades()
             NewNumber = len(Newgrades)
-            if NewNumber != SubjectNumber: #有新成绩
+            if NewNumber > SubjectNumber: #有新成绩
                 SubjectNumber = NewNumber
                 mark = 0
                 credit = 0
