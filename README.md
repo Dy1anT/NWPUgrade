@@ -1,8 +1,6 @@
 # NWPUgrade
 NWPU成绩查询
 
-NWPUgrade.py
-
 环境：python 2.7.10
 
 秉承着技术改变生活的态度写了这个脚本，那么你可以做到什么：
