@@ -1,5 +1,5 @@
 # NWPUgrade
-NWPU成绩查询
+NWPU自动成绩查询
 
 环境：python 2.7.10
 
