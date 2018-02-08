@@ -19,6 +19,12 @@ NWPU自动成绩查询
 
 * 将脚本中的学号和密码换成你的
 
+eg
+
+    self.values = {}
+    self.values['username'] = "xxxxxxxxxx" #username:学号
+    self.values['password'] = "xxxxxxxxxx" #password:密码
+
 * 将发送邮箱 邮箱密码 接收邮箱 以及smtp服务器 改成你的
 
 eg
@@ -41,7 +47,7 @@ eg
 # 其他版本
 **basic.py**
 
-这是一个简单版本的成绩查询爬虫，只需将学号和密码换成你的即可运行，输出目前为止的所有课程成绩以及目前为止的学分绩
+这是一个简单版本的成绩查询爬虫，只需将学号和密码换成你的即可运行，输出目前为止的所有课程成绩以及学分绩
 
 ```python basic.py```
 
