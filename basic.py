@@ -10,8 +10,8 @@ class NWPUgrade:
 	def __init__(self):
 		try:
 			self.values = {}
-			self.values['username'] = "201xxxxxxx"	  #username:学号
-			self.values['password'] = "yourpassword"  #password:密码
+			self.values['username'] = "username"	  #username:学号
+			self.values['password'] = "password"  #password:密码
 			self.loginUrl = "http://us.nwpu.edu.cn/eams/login.action"
 			self.gradeUrl = "http://us.nwpu.edu.cn/eams/teach/grade/course/person!historyCourseGrade.action?projectType=MAJOR"
 			self.cookie = cookielib.CookieJar()
