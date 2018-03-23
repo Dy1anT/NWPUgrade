@@ -46,10 +46,10 @@ class NWPUgrade:
 			mark = 0
 			credit = 0
 			for grade in self.grades:
-				print grade[0]    # 学期
-				print grade[1]    # 课程名称
-				print u'学分：', grade[2]    # 学分
-				print u'最终成绩：', grade[3]    # 成绩
+				print grade[0]                 # 学期
+				print grade[1]                 # 课程名称
+				print u'学分：', grade[2]      # 学分
+				print u'最终成绩：', grade[3]  # 成绩
 				print
 				if grade[3] != 'P':
 					mark += float(grade[3]) * float(grade[2])
