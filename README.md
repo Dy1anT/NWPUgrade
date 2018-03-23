@@ -7,7 +7,7 @@ NWPU自动成绩通知
 
 * 再也无需不厌其烦地登陆教务系统查看成绩
 
-* 每次新成绩出炉都会有邮件发送至你邮箱
+* 每次新程序出炉都会有邮件发送至你邮箱
 
 * 让你永远领先别人一步得到最新成绩
 
@@ -25,7 +25,7 @@ eg
     self.values['username'] = "xxxxxxxxxx" #username:学号
     self.values['password'] = "xxxxxxxxxx" #password:密码
 
-* 将发送邮箱 邮箱密码 接收邮箱 以及smtp服务器 改成你的
+* 将main中的发送邮箱 邮箱密码 接收邮箱 以及smtp服务器 改成你的
 
 eg
     
