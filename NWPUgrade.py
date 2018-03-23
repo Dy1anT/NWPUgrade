@@ -16,8 +16,8 @@ class NWPUgrade:
     def __init__(self):
         try:
             self.values = {}
-            self.values['username'] = "xxxxxxxxxx" #username:学号
-            self.values['password'] = "xxxxxxxxxx" #password:密码
+            self.values['username'] = "username"	#username:学号
+            self.values['password'] = "password"	#password:密码
             self.loginUrl = "http://us.nwpu.edu.cn/eams/login.action"
             self.gradeUrl = "http://us.nwpu.edu.cn/eams/teach/grade/course/person!historyCourseGrade.action?projectType=MAJOR"
             self.message = ''
@@ -51,10 +51,10 @@ class NWPUgrade:
             mark = 0
             credit = 0
             for grade in self.grades:
-                print grade[0] #学期
-                print grade[1] #课程名称
-                print u'学分：', grade[2] #学分
-                print u'最终成绩：', grade[3] #成绩
+                print grade[0]                  # 学期
+                print grade[1]                  # 课程名称
+                print u'学分：', grade[2]       # 学分
+                print u'最终成绩：', grade[3]   # 成绩
                 if grade[3] != 'P':
                     mark += float(grade[3]) * float(grade[2])
                     credit += float(grade[2])
@@ -74,21 +74,20 @@ def _format_addr(s):
     Header(name, 'utf-8').encode(), \
     addr.encode('utf-8') if isinstance(addr, unicode) else addr))
 
-
-if __name__ == '__main__':
-    from_addr = '' #发送邮箱
-    password = '' #邮箱密码
-    to_addr = '' #目标邮箱
-    smtp_server = '' #smtp服务器
+def main():
+    from_addr = 'xxxxxxxx'
+    password = 'xxxxxxxx'
+    to_addr = 'xxxxxxx'
+    smtp_server = 'xxxxxxx'
 
     NWPU = NWPUgrade()
     NWPU.grade()
-    NWPU.printgrade()
+    NWPU.printgrade() #先打印目前的成绩
     grades = NWPU.getgrades()
     SubjectNumber = len(grades)
     while True:
         try:
-            time.sleep(20*60) #20分钟检测一次
+            time.sleep(15*60) #15分钟检测一次
             NWPU.grade()
             Newgrades = NWPU.getgrades()
             NewNumber = len(Newgrades)
@@ -120,3 +119,7 @@ if __name__ == '__main__':
                 server.quit()
         except:
             continue
+
+if __name__ == '__main__':
+    main()
+    
