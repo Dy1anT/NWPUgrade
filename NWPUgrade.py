@@ -16,8 +16,8 @@ class NWPUgrade:
     def __init__(self):
         try:
             self.values = {}
-            self.values['username'] = "username"	#username:学号
-            self.values['password'] = "password"	#password:密码
+            self.values['username'] = "username"    # username:学号
+            self.values['password'] = "password"    # password:密码
             self.loginUrl = "http://us.nwpu.edu.cn/eams/login.action"
             self.gradeUrl = "http://us.nwpu.edu.cn/eams/teach/grade/course/person!historyCourseGrade.action?projectType=MAJOR"
             self.message = ''
@@ -82,27 +82,27 @@ def main():
 
     NWPU = NWPUgrade()
     NWPU.grade()
-    NWPU.printgrade() #先打印目前的成绩
+    NWPU.printgrade()    # 先打印目前的成绩
     grades = NWPU.getgrades()
     SubjectNumber = len(grades)
     while True:
         try:
-            time.sleep(15*60) #15分钟检测一次
+            time.sleep(15*60)    # 15分钟检测一次
             NWPU.grade()
             Newgrades = NWPU.getgrades()
             NewNumber = len(Newgrades)
-            if NewNumber > SubjectNumber: #有新成绩
+            if NewNumber > SubjectNumber:    # 有新成绩
                 SubjectNumber = NewNumber
                 mark = 0
                 credit = 0
                 Newgrade = []
                 for grade in Newgrades:
                     if grade not in grades:
-                        Newgrade.append(grade) #可能同时更新复数个
+                        Newgrade.append(grade)    # 可能同时更新复数个
                     if grade[3] != 'P':
                         mark += float(grade[3]) * float(grade[2])
                         credit += float(grade[2])
-                GPA = mark / credit #计算学分绩
+                GPA = mark / credit    # 计算学分绩
                 grades = Newgrades
                 text = ''
                 for grade in Newgrade:
