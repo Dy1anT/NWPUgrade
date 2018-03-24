@@ -1,7 +1,7 @@
 # NWPUgrade
 NWPU自动成绩通知
 
-环境：python 2.7.10
+* 环境：python 2.7.10
 
 秉承着技术改变生活的态度写了这个脚本，那么你可以做到什么：
 
@@ -22,20 +22,17 @@ NWPU自动成绩通知
 eg
 
     self.values = {}
-    self.values['username'] = "xxxxxxxxxx" #username:学号
-    self.values['password'] = "xxxxxxxxxx" #password:密码
+    self.values['username'] = "xxxxxxxxxx" # username:学号
+    self.values['password'] = "xxxxxxxxxx" # password:密码
 
 * 将main中的发送邮箱 邮箱密码 接收邮箱 以及smtp服务器 改成你的
 
 eg
     
-    from_addr = 'xxx@163.com' #发送邮件的邮箱
-
-    password = '你的邮箱密码' #发送邮箱的密码
-    
-    to_addr = '123456@qq.com' #用于接收邮件的邮箱
-    
-    smtp_server = 'smtp.163.com' #smtp服务器
+    from_addr = 'xxx@163.com' # 发送邮件的邮箱
+    password = '你的邮箱密码' # 发送邮箱的密码
+    to_addr = '123456@qq.com' # 用于接收邮件的邮箱
+    smtp_server = 'smtp.163.com' # smtp服务器
     
 * 输入命令后台执行代码
 
