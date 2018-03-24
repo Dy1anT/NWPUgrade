@@ -17,7 +17,7 @@ NWPU自动成绩通知
 
 * 你只需找一台服务器(测试用的linux)
 
-* 将脚本中的学号和密码换成你的
+* 将脚本中的 username 和 password 换成你的学号和密码
 
 eg
 
@@ -25,7 +25,7 @@ eg
     self.values['username'] = "xxxxxxxxxx" # username:学号
     self.values['password'] = "xxxxxxxxxx" # password:密码
 
-* 将main中的发送邮箱 邮箱密码 接收邮箱 以及smtp服务器 改成你的
+* 将 main() 中的 发送邮箱 邮箱密码 接收邮箱 以及smtp服务器 改成你的
 
 eg
     
