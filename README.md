@@ -34,7 +34,9 @@ smtp_server = 'smtp.163.com'  # smtp服务器
 ```
 4. 输入命令后台执行代码
 
-```nohup python NWPUgrade.py &```
+```
+nohup python NWPUgrade.py &
+```
 
 值得一提的是，测试时用的是阿里云服务器，而阿里云服的25端口都是默认禁止的，所以脚本中的邮件端口改为456。如果你使用的环境没有这种限制，可以改回25端口。
 
@@ -43,10 +45,14 @@ smtp_server = 'smtp.163.com'  # smtp服务器
 
 这是一个简单版本的成绩查询爬虫，只需将学号和密码换成你的即可运行，输出目前为止的所有课程成绩以及学分绩
 
-```python basic.py```
+```
+python basic.py
+```
 
 **input.py**
 
 和 basic.py 大致相同，不过输入学号密码的过程在命令行完成
 
-```python input.py```
+```
+python input.py
+```
