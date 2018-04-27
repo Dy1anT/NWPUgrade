@@ -17,7 +17,7 @@ Python 2.7
 
 ## 具体步骤
 
-1. 你只需找一台云服务器(测试用的阿里云linux)
+1. 你只需找一台云服务器(测试用的阿里云Ubuntu)
 
 2. 将脚本中的 username 和 password 换成你的学号和密码
 ```
@@ -35,7 +35,7 @@ smtp_server = 'smtp.163.com'  # smtp服务器
 4. 输入命令后台执行代码
 
 ```
-nohup python NWPUgrade.py &
+$ nohup python NWPUgrade.py &
 ```
 
 值得一提的是，测试时用的是阿里云服务器，而阿里云服的25端口都是默认禁止的，所以脚本中的邮件端口改为456。如果你使用的环境没有这种限制，可以改回25端口。
