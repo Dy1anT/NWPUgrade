@@ -19,13 +19,12 @@ Python 2.7
 
 1. 你只需找一台云服务器(测试用的阿里云Ubuntu)
 
-2. 将脚本中的 username 和 password 换成你的学号和密码
+2. 将 config.py 中的 username 和 password 换成你的学号和密码
 ```
-self.values = {}
-self.values['username'] = "xxxxxxxxxx"  # username:学号
-self.values['password'] = "xxxxxxxxxx"  # password:密码
+username = "xxxxxxxxxx"  # username:学号
+password = "xxxxxxxxxx"  # password:密码
 ```
-3. 将 main() 中的 发送邮箱 邮箱密码 接收邮箱 以及smtp服务器 改成你的
+3. 将 config.py 中的发送邮箱、邮箱密码、接收邮箱以及 smtp 服务器地址修改成你的
 ```
 from_addr = 'xxx@163.com'  # 发送邮件的邮箱
 password = '你的邮箱密码'  # 发送邮箱的密码
