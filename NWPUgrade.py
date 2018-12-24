@@ -10,6 +10,7 @@ from email import encoders
 from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import parseaddr, formataddr
+from config import username, password, from_addr, smtp_password, to_addr, smtp_server
 import smtplib
 
 
@@ -17,8 +18,8 @@ class NWPUgrade:
     def __init__(self):
         try:
             self.values = {}
-            self.values['username'] = "username"  # username:学号
-            self.values['password'] = "password"  # password:密码
+            self.values['username'] = username
+            self.values['password'] = password
             self.loginUrl = "http://us.nwpu.edu.cn/eams/login.action"
             self.gradeUrl = "http://us.nwpu.edu.cn/eams/teach/grade/course/person!historyCourseGrade.action?projectType=MAJOR"
             self.message = ''
@@ -28,7 +29,7 @@ class NWPUgrade:
             self.data = urllib.urlencode(self.values)
             self.grades = {}
         except:
-            print 'ERROR'
+            print 'ERROR1'
 
     def login(self):
         try:
@@ -37,7 +38,7 @@ class NWPUgrade:
             content = result.read().decode('UTF-8')
             return content
         except:
-            print 'ERROR'
+            print 'ERROR2'
 
     def grade(self):
         try:
@@ -47,7 +48,7 @@ class NWPUgrade:
                 re.S)
             self.grades = re.findall(pattern, content)
         except:
-            print 'ERROR'
+            print 'ERROR3'
 
     def printgrade(self):
         try:
@@ -63,13 +64,13 @@ class NWPUgrade:
                     credit += float(grade[2])
             print u'你的学分绩', mark / credit
         except:
-            print 'ERROR'
+            print 'ERROR4'
 
     def getgrades(self):
         try:
             return self.grades
         except:
-            print 'ERROR'
+            print 'ERROR5'
 
 
 def _format_addr(s):
@@ -79,12 +80,19 @@ def _format_addr(s):
         addr.encode('utf-8') if isinstance(addr, unicode) else addr))
 
 
-def main():
-    from_addr = 'xxxxxxxx'
-    password = 'xxxxxxxx'
-    to_addr = 'xxxxxxx'
-    smtp_server = 'xxxxxxx'
+def sendemail(text):
+    msg = MIMEText(text, 'plain', 'utf-8')
+    msg['From'] = _format_addr(u'Python <%s>' % from_addr)
+    msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
+    msg['Subject'] = Header(u'您的成绩单', 'utf-8').encode()
+    server = smtplib.SMTP_SSL(smtp_server, 465)
+    server.set_debuglevel(1)
+    server.login(from_addr, smtp_password)
+    server.sendmail(from_addr, [to_addr], msg.as_string())
+    server.quit()
 
+
+def main():
     NWPU = NWPUgrade()
     NWPU.grade()
     NWPU.printgrade()  # 先打印目前的成绩
@@ -113,15 +121,7 @@ def main():
                 for grade in Newgrade:
                     text = text + u"学期：%s  \n课程名称：%s  \n学分：%s  \n成绩：%s  \n" % (grade[0], grade[1], grade[2], grade[3])
                 text = text + u'学分绩：%f' % GPA
-                msg = MIMEText(text, 'plain', 'utf-8')
-                msg['From'] = _format_addr(u'Python <%s>' % from_addr)
-                msg['To'] = _format_addr(u'管理员 <%s>' % to_addr)
-                msg['Subject'] = Header(u'您的成绩单', 'utf-8').encode()
-                server = smtplib.SMTP_SSL(smtp_server, 465)
-                server.set_debuglevel(1)
-                server.login(from_addr, password)
-                server.sendmail(from_addr, [to_addr], msg.as_string())
-                server.quit()
+                sendemail(text)
         except:
             continue
 
